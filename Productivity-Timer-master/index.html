@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+	<meta name="mobile-web-app-capable" content="yes">
+	<link rel="shortcut icon" sizes="192x192" href="ico.png"> 
+	<!--Android OS status bar colour-->
+	<meta name="theme-color" content="#455A64" />
+	<title>Productivity Timer</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/modal.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/material.min.css">
+	<script defer src="js/material.min.js"></script>
+</head>
+
+<body>
+	<div id="modal-overlay" class="modal-overlay"></div>
+	<div class="mdl-layout mdl-js-layout">
+
+		<!--Fixed Header-->
+		<header class="mdl-layout__header" style="background: #455A64;">
+			<div class="mdl-layout__header-row">
+				<span class="mdl-layout-title">Productivity Timer</span>
+			</div>
+		</header>
+
+		<!--Side drawer-->
+		<div class="mdl-layout__drawer">
+			<span class="mdl-layout-title">Productivity Timer</span>
+			<p id="mdl-drawer-information">
+				The Productivity Timer is a single-page web app providing chess clock functionality, with the purpose of tracking time actively working on a project and time not working on a project.
+				<br />
+				<br /> Made with JavaScript using some Jquery and styled using MDL Lite.
+			</p>
+			<br />
+			<a href="https://github.com/Pjaerr/Productivity-Timer">Source Code</a>
+		</div>
+
+		<!--Main Content-->
+		<main id="mdl-layout__content" class="mdl-layout__content" style="flex: 1 0 auto;">
+			<h1 id="header" class="mdl-layout-title">Projects</h1>
+
+			<!--MODAL-->
+		<div id="modal-box" class="modal-box">
+			<div class="modal-header">
+				<div class="modal-close-btn">
+					<button id="close-modal" class="mdl-button mdl-js-button mdl-js-ripple-effect" onclick="triggerModal()">
+						<span><i class="material-icons">arrow_back</i> Back</span>
+					</button>
+				</div>
+			</div>
+			<div class="modal-content">
+				<div id="project-attributes">
+					<div id="project-attr-name">
+						<h10>Project Name</h10>
+						<form>
+							<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+								<input class="mdl-textfield__input" type="text" id="project-name" maxlength="36">
+								<label class="mdl-textfield__label" for="project-name">Project Name</label>
+							</div>
+						</form>
+					</div>
+
+					<div id="project-attr-colourselect">
+						<h10>Project Colour</h10>
+						<div id="colour-select">
+							<select id="colour-select-dropdown" name="colour-select-dropdown">
+							</select>
+						</div>
+					</div>
+
+					<button id="create-card" class="mdl-button mdl-js-button mdl-js-ripple-effect">
+						<i class="material-icons">add</i>
+					</button>
+				</div>
+			</div>
+		</div>
+		<!--MODAL-->
+
+
+
+			<div id="main-content" style="display: block;">
+				<div class="cards">
+						
+				</div>
+
+				<!--Blank, create new card-->
+				<br />
+				<div class="create-new-card card-holder mdl-grid">
+					<a id="new-card" class="mdl-cell--6-col mdl-cell--4-col-phone" href="#">
+						<div style="background: #fff;" class="mdl-cell--6-col mdl-cell--4-col-phone project-card mdl-card mdl-shadow--2dp mdl-navigation__link mdl-js-button mdl-js-ripple-effect">
+							<div class="mdl-card__title">
+								<h2 style="color: #212121; margin: auto;" class="mdl-card__title-text"><i class="material-icons">add</i></h2>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+
+			<div id="timer-content" style="display: none;">
+				<div style="text-align: center;">
+					<a id="back-to-projects-btn" class="mdl-navigation__link mdl-js-button mdl-js-ripple-effect" href="#">
+						<span><i class="material-icons">arrow_back</i> Go back to Projects</span>
+                    </a>
+                </div>
+                    <div class="timer-card mdl-grid">
+                        <div id="timer-active" class="mdl-cell--6-col mdl-cell--4-col-phone project-card mdl-card mdl-shadow--2dp mdl-navigation__link mdl-js-button mdl-js-ripple-effect">
+                                <div class="mdl-card__title">
+                                    <div>
+                                        <h11>Active:  </h11>
+                                        <h2 id="timer-active-text" class="mdl-card__title-text">  00:00:00</h2>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+
+                    <div id="timer-controls" style="padding-top: 12px; padding-bottom: 32px;">
+                        <div id="reset" style="float: left; margin-left: 40%;">
+                            <a onclick="resetTimers()" id="reset-btn" class="mdl-navigation__link mdl-js-button mdl-js-ripple-effect">
+                                <i class="material-icons">
+                                    replay
+                                </i>
+                            </a>
+                        </div>
+                        <div id="pause" style="float: right; margin-right: 40%;">
+                            <a onclick="deleteProject()" id="pause-btn" class="mdl-navigation__link mdl-js-button mdl-js-ripple-effect" >
+                                <i class="material-icons">
+                                    delete
+                                </i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="timer-card mdl-grid">
+                        <div id="timer-inactive" class="mdl-cell--6-col mdl-cell--4-col-phone project-card mdl-card mdl-shadow--2dp mdl-navigation__link mdl-js-button mdl-js-ripple-effect">
+                                <div class="mdl-card__title">
+                                    <div>
+                                        <h11>Inactive:  </h11>
+                                        <h2 id="timer-inactive-text" class="mdl-card__title-text">  00:00:00</h2>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+        </div>
+        <script src="js/modal.js"></script>
+        <script src="js/storage.js"></script>
+        <script src="js/timers.js"></script>
+		<script src="js/app.js"></script>
+	</body>
+</html>

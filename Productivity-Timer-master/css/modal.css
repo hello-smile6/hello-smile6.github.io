@@ -1,0 +1,35 @@
+
+/*Styles the box wherein all the modal content sits.*/
+.modal-box
+{
+    /*These dimensions fit all screen widths in the chrome dev tools, however the height
+    will only go to 384px as the modal cannot be made responsive to heights lower than that.*/
+    min-width: 304px;
+    max-width: 304px;
+    min-height: 256px;
+    max-height: 256px;
+    display: none;
+    margin: auto;
+    top: -25%;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+
+    
+}
+
+.modal-title
+{
+    margin: 0 auto;
+    
+}
+.modal-title > h4
+{
+    margin: 0 auto;
+    text-align: center;
+}
+
+#close-modal
+{
+    color: #fafafa;
+}

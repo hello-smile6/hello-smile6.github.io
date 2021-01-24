@@ -1,0 +1,65 @@
+@font-face 
+{
+    font-family: Roboto-Regular;
+    src: url(../fonts/Roboto-Regular.ttf);
+}
+@font-face 
+{
+    font-family: Roboto-Light;
+    src: url(../fonts/Roboto-Light.ttf);
+}
+
+html > body
+{
+    background-color: #607D8B;
+    color: #ECEFF1;
+}
+
+#header
+{
+    text-align: center;
+}
+
+.project-card.mdl-card
+{
+    margin: 0 auto;
+    width: 512px;
+    min-height: 128px;
+}
+
+
+a.mdl-js-ripple-effect { position: relative; }
+
+.mdl-card__title
+{
+    margin: auto;
+}
+
+.card-holder > a
+{
+    text-decoration: none;
+    max-width: 512px;
+}
+.card-holder
+{
+    max-width: 512px;
+    display: inline-block;
+}
+
+#project-attributes
+{
+    margin-top: 24px;
+    margin-left: 12px;
+}
+#create-card
+{
+    margin-top: 12px;
+    background: #FAFAFA;
+}
+
+#mdl-drawer-information
+{
+    text-align: justify;
+    margin-left: 4px;
+    margin-right: 4px;
+}
